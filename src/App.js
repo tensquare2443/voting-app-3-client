@@ -92,7 +92,7 @@ class App extends React.Component {
     var _id = poll._id;
     var answers = poll.answers;
 
-    axios.post("http://localhost:3005/poll/vote", {_id, answers}).then((response) => {
+    axios.post("https://voting-app-3-server-161718.herokuapp.com/poll/vote", {_id, answers}).then((response) => {
 
       poll = response.data;
       var appStatus = {};
@@ -141,7 +141,7 @@ class App extends React.Component {
     this.removePoll(pollId, userId, pollsCreated);
   };
   removePoll = (pollId, userId, pollsCreated) => {
-    axios.post("http://localhost:3005/poll/remove", {pollId, userId, pollsCreated}).then((response) => {
+    axios.post("https://voting-app-3-server-161718.herokuapp.com/poll/remove", {pollId, userId, pollsCreated}).then((response) => {
       var user = response.data[0];
       var polls = response.data[1];
 
@@ -276,7 +276,7 @@ class App extends React.Component {
   signInSubmit() {
     var formValues = Object.assign({}, this.state.signInModalForm);
 
-    axios.post("http://localhost:3005/user/login", formValues).then((response) => {
+    axios.post("https://voting-app-3-server-161718.herokuapp.com/user/login", formValues).then((response) => {
 
       if (!response.data.validated && response.data.errorMsg === "Invalid email or password.") {
         return this.setState({
@@ -352,7 +352,7 @@ class App extends React.Component {
       };
     }
 
-    axios.post("http://localhost:3005/user", formValues).then((response) => {
+    axios.post("https://voting-app-3-server-161718.herokuapp.com/user", formValues).then((response) => {
       if (response.data.code === 11000) {
         var field = response.data.errmsg.split("index: ")[1].split("_")[0];
 
@@ -396,7 +396,7 @@ class App extends React.Component {
   };
 
   displayPoll = (pollId, state) => {
-    axios.post('http://localhost:3005/poll/view', {pollId}).then((response) => {
+    axios.post('https://voting-app-3-server-161718.herokuapp.com/poll/view', {pollId}).then((response) => {
       var poll = response.data;
       var newAppState = state;
       var appStatus = {};
@@ -442,7 +442,7 @@ class App extends React.Component {
       answers.push({answer, votes});
     });
 
-    axios.post('http://localhost:3005/poll', {question, answers, _creator}).then((response) => {
+    axios.post('https://voting-app-3-server-161718.herokuapp.com/poll', {question, answers, _creator}).then((response) => {
       var user = response.data[1];
       var username = user.username;
       var email = user.email;
