@@ -4,7 +4,7 @@ import axios from 'axios';
 class MyPolls extends React.Component {
   updateMyPolls() {
     var _creator = this.props.user._id;
-    axios.post("http://localhost:3005/poll/my-polls", {_creator}).then((response) => {
+    axios.post("https://voting-app-3-server-161718.herokuapp.com/poll/my-polls", {_creator}).then((response) => {
       var myPolls = response.data;
       this.props.setMyPolls(myPolls);
     }).catch((e) => {

@@ -4,7 +4,7 @@ import axios from 'axios';
 class AllPolls extends React.Component {
 
   componentDidMount() {
-    axios.get("http://localhost:3005/poll/all-polls").then((response) => {
+    axios.get("https://voting-app-3-server-161718.herokuapp.com/poll/all-polls").then((response) => {
       var allPolls = response.data;
       this.props.setAllPolls(allPolls);
     }).catch((e) => {
